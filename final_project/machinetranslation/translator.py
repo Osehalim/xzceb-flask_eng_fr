@@ -15,16 +15,25 @@ language_translator = LanguageTranslatorV3(
 )
 
 language_translator.set_service_url(url)
-language_translator.set_disable_ssl_verification(True)
 
 def english_to_french(english_text):
+    """
+
+    This function translates english to french
+    """
+
     french_text = language_translator.translate(
-        text = english_text,
-        model_id='en-fr').get_result()
-        return french_text
+    text = english_text,
+    model_id='en-fr').get_result()
+    return french_text.get("translations")[0].get("translation")
 
 def french_to_english(french_text):
+    """
+
+    This function translates french to english
+    """
+    
     english_text = language_translator.translate(
     text = french_text,
     model_id='fr-en').get_result()  
-    return english_text
+    return english_text.get("translations")[0].get('translation')
